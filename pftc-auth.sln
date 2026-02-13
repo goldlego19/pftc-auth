@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pftc-auth", "pftc-auth\pftc-auth.csproj", "{0F00037A-D000-4566-A55F-9D3667BDA9FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F00037A-D000-4566-A55F-9D3667BDA9FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F00037A-D000-4566-A55F-9D3667BDA9FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F00037A-D000-4566-A55F-9D3667BDA9FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F00037A-D000-4566-A55F-9D3667BDA9FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBBE435F-9DDA-41DE-882A-EB78EA3C744A}
+	EndGlobalSection
+EndGlobal
