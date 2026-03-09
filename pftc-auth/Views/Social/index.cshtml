@@ -1,0 +1,55 @@
+﻿@model IEnumerable<pftc_auth.Models.SocialMediaPost>
+
+@{
+    ViewData["Title"] = "Social Feed";
+
+    // Set your maximum character limit for the feed here
+    const int MaxPostLength = 150;
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Social Feed</h2>
+    @* Updated to CreatePost to match your controller *@
+    <a asp-action="CreatePost" class="btn btn-primary">Write a Post</a>
+</div>
+
+<hr />
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center mt-4">
+        No posts have been published yet. Be the first to share something!
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (SocialMediaPost post in Model.OrderByDescending(p => p.PostDate))
+        {
+            <div class="col-md-8 offset-md-2 mb-4" id="@Html.DisplayFor(item => post.PostID)">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@post.PostAuthor</h5>
+                        <h6 class="card-subtitle mb-3 text-muted">
+                            @post.PostDate.ToString("dd MMM yyyy HH:mm")
+                        </h6>
+                        @{
+                            string displayContent = post.PostContent;
+                            if (!string.IsNullOrEmpty(displayContent) && displayContent.Length > MaxPostLength)
+                            {
+                                displayContent = displayContent.Substring(0, MaxPostLength) + "...";
+                            }
+                        }
+
+                        <p class="card-text fs-5" style="white-space: pre-wrap;">@displayContent</p>
+                    </div>
+                    <div class="card-footer bg-transparent d-flex justify-content-end gap-2">
+                        @* <a asp-action="Details" asp-route-id="@post.PostID" class="btn btn-sm btn-outline-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@post.PostID" class="btn btn-sm btn-outline-secondary">Edit</a>*@
+                        <a asp-action="DeletePost" asp-route-id="@post.PostID" class="btn btn-sm btn-outline-danger">Delete</a> 
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

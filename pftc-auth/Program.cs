@@ -1,6 +1,11 @@
+using Google.Cloud.Firestore.V1;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.DataProtection.XmlEncryption;
+using pftc_auth.DataAccess;
+using pftc_auth.Services;
+using pftc_auth.Interfaces;
+
 
 namespace pftc_auth
 {
@@ -10,6 +15,7 @@ namespace pftc_auth
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", builder.Configuration["Authentication:Google:Credentials"]);
 
             //Google Auth Schemes
             builder.Services.AddAuthentication(options =>
@@ -37,8 +43,13 @@ namespace pftc_auth
 
             builder.Services.AddAuthorization();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<FirestoreRepository>();
+            builder.Services.AddScoped<IBucketStorageService, BucketStorageService>();
+
 
             var app = builder.Build();
+
+            app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -54,7 +65,6 @@ namespace pftc_auth
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
 
 
             app.MapControllerRoute(

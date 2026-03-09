@@ -13,21 +13,23 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
 
-
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="navbar-collapse collapse">
-                    <!-- Left Alignment for user info -->
-                    <ul class="navbar-nav me-auto mb-2 mb-sm0">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item">
-                            <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">pftc_auth</a>
+                            @* Assuming this acts as your brand/home link *@
+                            <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Index">pftc_auth</a>
+                        </li>
+                        <li class="nav-item">
+                            @* NEW: Social Feed Link *@
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Social" asp-action="Index">Social Feed</a>
                         </li>
                     </ul>
 
-                    <!-- Right Alignment for user info -->
                     <ul class="navbar-nav mb-2 mb-sm-0">
                         @if (User.Identity.IsAuthenticated)
                         {
